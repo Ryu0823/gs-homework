@@ -14,32 +14,25 @@
         <form action="{{ url('books') }}" method="POST" class="form-horizontal">
             {{ csrf_field() }}
             
-            <!-- 本のタイトル -->
             <div class="form-group">
-                <label for="book" class="col-sm-3 control-label">Book</label>
-                
+                <!-- 本のタイトル -->
                 <div class="col-sm-6">
+                    <label for="book" class="col-sm-3 control-label">Book</label>
                     <input type="text" name="item_name" id="book-name"class="form-control">
                 </div>
-            </div>
-            <!--冊数-->
-            <div class="form-group">
-                <label for="book" class="col-sm-3 control-label">Number</label>
+                <!--冊数-->
                 <div class="col-sm-6">
+                    <label for="book" class="col-sm-3 control-label">Number</label>
                     <input type="text" name="item_number" id="book-number"class="form-control">
                 </div>
-            </div>
-            <!--金額-->
-            <div class="form-group">
-                <label for="book" class="col-sm-3 control-label">Amount</label>
+                <!--金額-->
                 <div class="col-sm-6">
+                    <label for="book" class="col-sm-3 control-label">Amount</label>
                     <input type="text" name="item_amount" id="book-amount"class="form-control">
                 </div>
-            </div>
-            <!--本公開日-->
-            <div class="form-group">
-                <label for="book" class="col-sm-3 control-label">Published</label>
+                <!--本の公開日-->
                 <div class="col-sm-6">
+                    <label for="book" class="col-sm-3 control-label">Published</label>
                     <input type="text" name="published" id="book-published"class="form-control">
                 </div>
             </div>
@@ -59,7 +52,7 @@
          @if (count($books) > 0)
             <div class="panel panel-default">
                 <div class="panel-heading"> 
-                    現在 本
+                    現在の本
                 </div>
                 <div class="panel-body">
                 <table class="table table-striped task-table">
@@ -76,7 +69,16 @@
                                 <td class="table-text">
                                     <div>{{ $book->item_name }}</div>
                                 </td>
-                                
+                                <!--本：更新ボタン-->
+                                <td>
+                                    <form action="{{ url('booksedit/'.$book->id) }}" method="POST">
+                                        {{csrf_field() }}
+                                        <button type="submit" class="btn btn_primary">
+                                            <i class="glyphicon glyphicon-pencil"></i>
+                                            更新
+                                        </button>
+                                    </form>
+                                </td>
                                 <!-- 本: 削除ボタン -->
                                 <td>
                                     <form action="{{ url('book/delete/'.$book->id) }}" method="POST">
